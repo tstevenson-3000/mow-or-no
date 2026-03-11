@@ -329,7 +329,7 @@ function getFreeBlocks_(date) {
   const events = calendar.getEvents(dayStart, dayEnd);
 
   const busy = events
-    .filter(e => e.getMyStatus() !== CalendarApp.GuestStatus.NO)
+    .filter(e => e.getMyStatus() !== CalendarApp.GuestStatus.NO && !e.isAllDayEvent())
     .map(e => ({
       start: new Date(e.getStartTime().getTime() - CONFIG.BUFFER_MINS * 60000),
       end: new Date(e.getEndTime().getTime() + CONFIG.BUFFER_MINS * 60000)
